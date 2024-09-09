@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Valores ao Vetor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        input[type="number"] {
+            padding: 10px;
+            font-size: 16px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        pre {
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Adicionar Valores ao Vetor</h1>
+    <input type="number" id="numero" placeholder="Digite um número">
+    <button onclick="adicionarValor()">Adicionar</button>
+
+    <pre id="valores">Valores inseridos: []</pre>
+    <pre id="media">Média: 0</pre>
+
+    <script>
+        let vetor = [];
+
+        function adicionarValor() {
+            let valor = parseFloat(document.getElementById("numero").value);
+            if (!isNaN(valor)) {
+                vetor.push(valor);
+                atualizarInterface();
+            }
+        }
+
+        function atualizarInterface() {
+            document.getElementById("valores").textContent = "Valores inseridos: " + JSON.stringify(vetor);
+
+            let soma = vetor.reduce((a, b) => a + b, 0);
+            let media = soma / vetor.length;
+            document.getElementById("media").textContent = "Média: " + (vetor.length > 0 ? media.toFixed(2) : 0);
+        }
+    </script>
+</body>
+</html>
